@@ -11,6 +11,26 @@ services:
       - '5432:5432'
     volumes:
       - todo_pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U emma -d todo_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  glorified-todo:
+    build: .
+    container_name: glorified_todo
+    ports:
+      - '8080:8080'
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/todo_db
+      SPRING_DATASOURCE_USERNAME: emma
+      SPRING_DATASOURCE_PASSWORD: emma_pass
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update  # or validate
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
 
 volumes:
   todo_pg_data:
