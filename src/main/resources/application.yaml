@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: glorified-todo
+
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/todo_db
+    username: emma
+    password: emma_pass
+
+  jpa:
+    hibernate:
+      ddl-auto: update
