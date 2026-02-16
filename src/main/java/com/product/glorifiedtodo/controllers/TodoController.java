@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/todos")
-@CrossOrigin(origins = {"http://localhost:3000", "https://glorified-todo.vercel.app/"})
+@CrossOrigin(origins = {"http://localhost:3000", "https://glorified-todo.vercel.app"})
 @RequiredArgsConstructor
 public class TodoController {
 
